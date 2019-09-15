@@ -2,9 +2,9 @@ package quicksort.controller;
 
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import quicksort.model.SortData;
 import quicksort.model.Utility;
@@ -12,13 +12,13 @@ import quicksort.service.SortService;
 
 @Controller
 public class SortController {
-    private final SortService sortService;
+    private SortService sortService;
 
     public SortController(SortService sortService) {
         this.sortService = sortService;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView main() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("main");
@@ -26,7 +26,7 @@ public class SortController {
     }
 
     @RequestMapping(value = "/Sort", method = RequestMethod.POST)
-    public ModelAndView sort(@ModelAttribute("action") String action, @ModelAttribute("mass") String massarray) {
+    public ModelAndView sort(@RequestParam("action") String action, @RequestParam("mass") String massarray) {
         ModelAndView modelAndView = new ModelAndView();
         SortData sortData = null;
 

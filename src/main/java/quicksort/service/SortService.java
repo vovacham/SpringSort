@@ -15,6 +15,7 @@ public class SortService {
     public SortService(SortDAO sortDAO) {
         this.sortDAO = sortDAO;
     }
+
     @Transactional
     public void add(SortData sortData) {
         sortDAO.add(sortData);
