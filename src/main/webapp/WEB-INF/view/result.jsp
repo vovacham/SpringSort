@@ -29,7 +29,7 @@
 </form>
 
 <div>
-    <button class="w3-btn w3-green w3-round-large w3-margin-bottom" onclick="location.href='${pageContext.request.contextPath}'">На
+    <button class="w3-btn w3-green w3-round-large w3-margin-bottom" onclick="location.href='/'">На
         главную
     </button>
 </div>

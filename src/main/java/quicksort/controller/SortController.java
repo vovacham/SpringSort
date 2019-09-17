@@ -1,28 +1,26 @@
 package quicksort.controller;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import quicksort.dao.SortRepository;
 import quicksort.model.SortData;
 import quicksort.model.Utility;
-import quicksort.service.SortService;
+
+import java.util.Optional;
 
 @Controller
 public class SortController {
-    private SortService sortService;
 
-    public SortController(SortService sortService) {
-        this.sortService = sortService;
-    }
+    @Autowired
+    private SortRepository sortRepository;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView main() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("main");
-        return modelAndView;
+    public String main() {
+        return "main";
     }
 
     @RequestMapping(value = "/Sort", method = RequestMethod.POST)
@@ -41,7 +39,7 @@ public class SortController {
 
                 sortData = new SortData("sort", mass.replaceAll(" ", ", "),
                         Utility.arrayToString(Utility.sortArray(arrayInt)));
-                sortService.add(sortData);
+                sortRepository.save(sortData);
                 modelAndView.addObject("mesId", sortData.getId());
                 modelAndView.setViewName("redirect:/Result");
 
@@ -58,7 +56,7 @@ public class SortController {
             sortData = new SortData("random", Utility.arrayToString(arrayInt),
                     Utility.arrayToString(Utility.sortArray(arrayInt)));
 
-            sortService.add(sortData);
+            sortRepository.save(sortData);
             modelAndView.addObject("mesId", sortData.getId());
             modelAndView.setViewName("redirect:/Result");
         }

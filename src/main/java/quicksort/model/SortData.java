@@ -6,8 +6,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Entity
 @Table(name = "tab", schema = "public", catalog = "test")
 public class SortData {
-    private static final AtomicInteger AUTO_ID = new AtomicInteger(0);
+    private static final AtomicInteger AUTO_ID = new AtomicInteger(1);
+
+    @Id
     private int id;
+    @Column(name="mestype")
     private String mesType;
     private String mes1;
     private String mes2;
@@ -23,8 +26,6 @@ public class SortData {
     public SortData() {
     }
 
-    @Id
-    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -33,8 +34,6 @@ public class SortData {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "mestype", nullable = true, length = -1)
     public String getMesType() {
         return mesType;
     }
@@ -43,8 +42,6 @@ public class SortData {
         this.mesType = mestype;
     }
 
-    @Basic
-    @Column(name = "mes1", nullable = true, length = -1)
     public String getMes1() {
         return mes1;
     }
@@ -53,8 +50,6 @@ public class SortData {
         this.mes1 = mes1;
     }
 
-    @Basic
-    @Column(name = "mes2", nullable = true, length = -1)
     public String getMes2() {
         return mes2;
     }
