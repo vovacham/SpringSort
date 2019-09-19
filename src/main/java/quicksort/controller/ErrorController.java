@@ -10,9 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class ErrorController {
 
     @RequestMapping(value = "/Error", method = RequestMethod.GET)
-    public ModelAndView result(@ModelAttribute("error") String err, @ModelAttribute("mass") String mass) {
+    public ModelAndView error(@ModelAttribute("error") String err, @ModelAttribute("mass") String mass) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("error");
+        modelAndView.setViewName("err");
         return modelAndView;
     }
 }

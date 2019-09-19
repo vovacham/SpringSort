@@ -10,20 +10,18 @@ import quicksort.dao.SortRepository;
 import quicksort.model.SortData;
 import quicksort.model.Utility;
 
-import java.util.Optional;
-
 @Controller
 public class SortController {
 
     @Autowired
     private SortRepository sortRepository;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String main() {
-        return "main";
+    @RequestMapping(value = "/sort", method = RequestMethod.GET)
+    public String sort() {
+        return "sort";
     }
 
-    @RequestMapping(value = "/Sort", method = RequestMethod.POST)
+    @RequestMapping(value = "/sort", method = RequestMethod.POST)
     public ModelAndView sort(@RequestParam("action") String action, @RequestParam("mass") String massarray) {
         ModelAndView modelAndView = new ModelAndView();
         SortData sortData = null;
